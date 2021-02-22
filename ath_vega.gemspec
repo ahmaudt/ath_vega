@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Ahmaud R. Templeton"]
   spec.email         = ["ahmaud@gmail.com"]
 
-  spec.summary       = "TODO: Write a short summary, because RubyGems requires one."
-  spec.description   = "TODO: Write a longer description or delete this line."
+  spec.summary       = "workout planner."
+  spec.description   = "Ath helps you plan your workout using exercises from the open source app, 'wger'."
   spec.homepage      = "https://github.com/ahmaudt/flatiron-cli-data-gem"
   spec.license       = "MIT"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.4.0")
