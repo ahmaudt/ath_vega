@@ -9,6 +9,7 @@ require 'pry'
 
 require_relative '../exercise.rb'
 require_relative '../category.rb'
+require_relative '../workout.rb'
 
 
 
@@ -54,6 +55,7 @@ class CLI
     def create_workout
         create_category_objects
         create_exercise_objects
+        new_workout = Workout.new
     end
 
 
@@ -79,7 +81,7 @@ class CLI
         # binding.pry
         # TODO: add list_categories method to output list of muscle categories
         Category.list_muscle_categories
-        # TODO: add input method to return all exercises for the corresponding number
+        # DONE: add input method to return all exercises for the corresponding number
         puts "\nEnter the corresponding number to see exercises for a muscle category."
         num = gets.chomp.to_i
         Category.get_exercises_by_category(num)
@@ -87,6 +89,8 @@ class CLI
         puts "\nEnter number of exercises to add it to your workout: "
         num = gets.chomp.to_i
         # TODO: should return "you have selected #{name_of_workout}."
+        
+        # TODO: should set selected exercise's instance variable equal to current instance of workout
         # TODO: should send user back to main screen with the previously selected muscle group removed
     end 
 

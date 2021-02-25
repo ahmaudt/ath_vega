@@ -1,8 +1,9 @@
 class Workout
     attr_accessor :name
 
+
     @@all_workouts = []
-    def initialize
+    def initialize(name=Time.now.ctime)
         @name = name
         @@all_workouts << self
     end
