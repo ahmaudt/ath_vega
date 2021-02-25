@@ -22,12 +22,14 @@ class Category
         #! pulls category object
         #! iterate through category object to display all corresponding exercises
         index = number - 1
+        i = 1
         muscle_group = self.all[index].muscle
         Exercise.all.select! do |exr| 
             if exr.muscle == muscle_group #where number corresponds to muscle category object selected 
                 puts "\n"
-                puts "#{exr.name}"
+                puts "#{i}. #{exr.name}"
                 puts "#{exr.description}"
+                i += 1
             end
         end
     end
