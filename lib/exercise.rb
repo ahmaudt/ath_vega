@@ -14,4 +14,15 @@ class Exercise # exercise belongs to a category
         @@all_exercises
     end
 
+    def self.exercise_selected_by_user(user_input)
+        index = user_input - 1
+        selected_exercise = nil
+        selected_exercise = self.all[index]
+        # self.all.select do |exr|
+        #     if exr.name  == selected_exercise
+        #         selected_exercise = exr
+        #     end
+        # end
+        # selected_exercise
+    end
 end

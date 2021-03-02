@@ -17,14 +17,14 @@ class Category
         @@all_categories.each.with_index(1) { |cat, idx| puts "#{idx}. #{cat.muscle}" }
     end
 
-    def self.get_exercises_by_category(number)
+    def self.get_exercises_by_category(user_input)
         #! the number is the index of the category object
         #! pulls category object
         #! iterate through category object to display all corresponding exercises
-        index = number - 1
+        index = user_input - 1
         i = 1
         muscle_group = self.all[index].muscle
-        Exercise.all.select! do |exr| 
+        Exercise.all.select do |exr| 
             if exr.muscle == muscle_group #where number corresponds to muscle category object selected 
                 puts "\n"
                 puts "#{i}. #{exr.name}"
