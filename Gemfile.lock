@@ -6,6 +6,11 @@ PATH
       json
       net-http
       nokogiri
+      pry
+      require_all
+      tty-option
+      tty-progressbar
+      tty-prompt
       uri
 
 GEM
@@ -13,8 +18,10 @@ GEM
   specs:
     ast (2.4.2)
     awesome_print (1.8.0)
+    coderay (1.1.3)
     diff-lcs (1.4.4)
     json (2.5.1)
+    method_source (1.0.0)
     net-http (0.1.1)
       net-protocol
       uri
@@ -24,10 +31,16 @@ GEM
     parallel (1.20.1)
     parser (3.0.0.0)
       ast (~> 2.4.1)
+    pastel (0.8.0)
+      tty-color (~> 0.5)
+    pry (0.14.0)
+      coderay (~> 1.1)
+      method_source (~> 1.0)
     racc (1.5.2)
     rainbow (3.0.0)
     rake (13.0.3)
     regexp_parser (2.0.3)
+    require_all (3.0.0)
     rexml (3.2.4)
     rspec (2.99.0)
       rspec-core (~> 2.99.0)
@@ -49,17 +62,41 @@ GEM
     rubocop-ast (1.4.1)
       parser (>= 2.7.1.5)
     ruby-progressbar (1.11.0)
+    strings-ansi (0.2.0)
+    tty-color (0.6.0)
+    tty-cursor (0.7.1)
+    tty-option (0.1.0)
+    tty-progressbar (0.18.1)
+      strings-ansi (~> 0.2)
+      tty-cursor (~> 0.7)
+      tty-screen (~> 0.8)
+      unicode-display_width (>= 1.6, < 3.0)
+    tty-prompt (0.23.0)
+      pastel (~> 0.8)
+      tty-reader (~> 0.8)
+    tty-reader (0.9.0)
+      tty-cursor (~> 0.7)
+      tty-screen (~> 0.8)
+      wisper (~> 2.0)
+    tty-screen (0.8.1)
     unicode-display_width (2.0.0)
     uri (0.10.1)
+    wisper (2.0.1)
 
 PLATFORMS
   x86_64-darwin-20
 
 DEPENDENCIES
   ath_vega!
+  json
+  pry
   rake (~> 13.0)
+  require_all
   rspec (~> 2.4)
   rubocop (~> 1.7)
+  tty-option
+  tty-progressbar
+  tty-prompt
 
 BUNDLED WITH
    2.2.9

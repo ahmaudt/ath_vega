@@ -10,4 +10,8 @@ gem "rake", "~> 13.0"
 gem "rubocop", "~> 1.7"
 gem "json"
 gem "require_all"
+gem "pry", :groups => [:development, :test]
+gem "tty-prompt"
+gem "tty-progressbar"
+gem "tty-option"
 

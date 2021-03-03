@@ -33,6 +33,11 @@ Gem::Specification.new do |spec|
   spec.add_dependency "uri"
   spec.add_dependency "awesome_print"
   spec.add_dependency "json"
+  spec.add_dependency "require_all"
+  spec.add_dependency "pry"
+  spec.add_dependency "tty-option"
+  spec.add_dependency "tty-progressbar"
+  spec.add_dependency "tty-prompt"
 
   # Uncomment to register a new dependency of your gem
   # spec.add_dependency "example-gem", "~> 1.0"

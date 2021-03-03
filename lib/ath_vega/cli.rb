@@ -1,17 +1,4 @@
 # CLI Controller
-require 'net/http'
-require 'uri'
-require 'open-uri'
-require 'awesome_print'
-require 'json'
-require 'nokogiri'
-require 'pry'
-
-require_relative '../exercise.rb'
-require_relative '../category.rb'
-require_relative '../workout.rb'
-
-
 
 class CLI
 
@@ -102,16 +89,32 @@ class CLI
         selected_exercise
     end
 
+    def prompt
+        prompt = TTY::Prompt.new
+    end
+
     def build_workout(new_workout)
+        prompt
         while new_workout.get_exercises.length < 3
-            input = nil
+            # input = nil
             # list muscle categories
             puts "\n"
-            list_categories
+            # list_categories
             puts "Enter number of muscle group to see associated exercises"
-            input  = num_input
+            # input  = num_input
+            input = prompt.select("Select muscle group to see exercises", list_categories, cycle:true)
             # select muscle category to see exercises
+            binding.pry
             exercises = Category.get_exercises_by_category(input)
+            if input != exercises.length - 1
+                begin
+                    raise CliError
+                rescue CliError => error
+                    puts error.message
+                else
+                    input = num_input
+                end
+            end
             puts "\nenter number to add exercise to workout"
             input = num_input
             # return exercises based on input and add it to workout
@@ -130,7 +133,8 @@ class CLI
         create_exercises
         build_workout(new_workout)
         puts "\nYour workout is set."
-        puts "\nLet's start training so we can get back out there and fight crime. Remember, evil never rests!"
+        puts "\nLet's start training so we can get back out there and fight crime. Remember..."
+        puts "...evil never rests!"
         # starts workout and shows first exercise
     end 
 end

@@ -1,12 +1,20 @@
-require "bundler"
+require 'bundler/setup'
+Bundler.require(:default, :development) 
 
-
-Bundler.require
 require "ath_vega"
+require "require_all"
+require 'net/http'
+require 'uri'
+require 'open-uri'
+require 'awesome_print'
+require 'json'
+require 'nokogiri'
+require 'pry'
 require_relative '../lib/ath_vega'
 require_relative '../lib/vega_api'
 require_relative '../lib/workout'
 require_relative '../lib/exercise'
-require_relative '../lib/cli'
-require_relative '../lib/category.rb'
-require_relative '../lib/cli_error.rb'
+require_relative '../lib/category'
+require_relative '../lib/cli_error'
+require_relative '../lib/ath_vega/cli'
+
