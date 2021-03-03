@@ -1,7 +1,5 @@
-require_relative './exercise.rb'
-
 class Category
-    attr_accessor :muscle
+    attr_accessor :muscle, :exercises
 
     @@all_categories = []
     def initialize
@@ -41,6 +39,35 @@ class Category
                 i += 1
             end
         end
+    end
+
+    def self.set_exercises # sets what category instance of exercise object belongs to
+        exercise_menu = {}
+        self.all.each do |category|
+            Exercise.all.select do |exr|
+                if category.muscle == exr.muscle
+                    exr.category = category
+                end
+            end
+        end
+    end
+
+    def get_exercises # gets exercises belonging to an instance of category
+        Exercise.all.select { |exr| exr.category == self }
+    end
+
+    def self.get_exercises_by_category(user_input)
+        exercise_menu = {}
+        index = user_input - 1
+        i = 1
+        muscle_group = self.all[index].muscle
+        Exercise.all.each.with_index do |exr, idx|
+            if exr.muscle == muscle_group
+                exercise_menu[:"#{i}. #{exr.name}\n#{exr.description}"] = idx
+                i += 1
+            end
+        end
+        exercise_menu
     end
 
     def workouts

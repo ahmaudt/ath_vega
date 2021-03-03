@@ -11,7 +11,7 @@ require_relative '../lib/environment.rb'
 # Pry.start
 
 def reload!
-    load_all './lib.rb'
+    load_all './lib'
 end
 
 require "irb"

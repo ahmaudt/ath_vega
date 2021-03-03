@@ -1,5 +1,5 @@
 class Exercise # exercise belongs to a category
-    attr_accessor :name, :muscle, :description, :workout
+    attr_accessor :name, :muscle, :description, :workout, :category
 
     @@all_exercises = []
 

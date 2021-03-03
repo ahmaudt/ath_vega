@@ -63,6 +63,7 @@ class CLI
                 end
             end
         end
+        Category.set_exercises
     end
 
     def num_input 
@@ -102,9 +103,10 @@ class CLI
             # list_categories
             puts "Enter number of muscle group to see associated exercises"
             # input  = num_input
+            list_categories
+            binding.pry
             input = prompt.select("Select muscle group to see exercises", list_categories, cycle:true)
             # select muscle category to see exercises
-            binding.pry
             exercises = Category.get_exercises_by_category(input)
             if input != exercises.length - 1
                 begin
