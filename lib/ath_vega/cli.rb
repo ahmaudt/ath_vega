@@ -103,9 +103,10 @@ class CLI
             # list_categories
             puts "Enter number of muscle group to see associated exercises"
             # input  = num_input
-            list_categories
-            binding.pry
             input = prompt.select("Select muscle group to see exercises", list_categories, cycle:true)
+            Category.get_exr_by_cat(input)
+            binding.pry
+            # TODO: create menu that lists exercises associated with chosen category
             # select muscle category to see exercises
             exercises = Category.get_exercises_by_category(input)
             if input != exercises.length - 1

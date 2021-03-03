@@ -13,7 +13,7 @@ class Category
 
     def self.list_muscle_categories
         category_menu = {}
-        @@all_categories.each.with_index(1) { |cat, idx| category_menu[:"#{cat.muscle}"] = idx  } # "#{idx}. #{cat.muscle}" }
+        @@all_categories.each.with_index { |cat, idx| category_menu[:"#{cat.muscle}"] = idx  } # "#{idx}. #{cat.muscle}" }
         category_menu
     end
 
@@ -42,7 +42,6 @@ class Category
     end
 
     def self.set_exercises # sets what category instance of exercise object belongs to
-        exercise_menu = {}
         self.all.each do |category|
             Exercise.all.select do |exr|
                 if category.muscle == exr.muscle
@@ -68,6 +67,11 @@ class Category
             end
         end
         exercise_menu
+    end
+
+    def self.get_exr_by_cat(user_input)
+        selected_category = self.all[user_input]
+        selected_category.get_exercises
     end
 
     def workouts
