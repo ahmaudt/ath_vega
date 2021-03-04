@@ -37,8 +37,13 @@ class CLI
     end
 
     def call_api
-        get_exercises
-        get_categories
+        bar = TTY::ProgressBar.new("getting workout data... [:bar]", total: 40)
+        create_categories
+        create_exercises
+        40.times do
+            sleep(0.2)
+            bar.advance  # by default increases by 1
+          end
     end
 
     def create_categories
@@ -107,15 +112,33 @@ class CLI
         exr_obj = selected_exercise(prompt.select("Select an exercise to add to your workout", list_items(cat_obj), cycle:true))
     end
 
-    def build_workout_menu(new_workout)
-        cat_obj = category_menu
-        exr_obj = exercise_menu(cat_obj)
-        puts "\nYou selected: " + "#{exr_obj.name}"
-        add_exr = prompt.yes?("Want to add this exercise to your workout?")
+    def add_exr_prompt(exr_obj)
+        add_exr = prompt.yes?("Want to add #{exr_obj.name} exercise to your workout?")
+    end
+
+    def add_to_workout(exercise, workout_session)
+        add_exr = add_exr_prompt(exercise)
         if add_exr == true
-            exr_obj.workout = new_workout
+            exercise.workout = workout_session 
         end
-        new_workout.get_exercises
+    end
+
+    def build_workout_menu(workout_session)
+        while workout_session.get_exercises.length < 3  
+            cat_obj = category_menu
+            puts "\n"
+            exr_obj = exercise_menu(cat_obj)
+            puts "\n"
+            add_to_workout(exr_obj, workout_session)
+        end
+        puts "\nHere's your workout!"
+        puts "\n"
+        show_workout(workout_session)
+    end
+
+    def show_workout(workout_session)
+        table = TTY::Table.new(["Set/Reps", "Exercise 1","Exercise 2", "Exercise 3"], [[" ", "#{workout_session.get_exercises[0].name}", "#{workout_session.get_exercises[1].name}", "#{workout_session.get_exercises[2].name}"]])
+        puts table.render(:unicode)
     end
 
     def start
@@ -124,10 +147,10 @@ class CLI
                  ∎∎∎
                 ∎∎∎∎∎
                 |   |
-                ∎∎∎∎∎ Ivory Tour 
-                ∎∎∎∎∎ Studios presents...
+                ∎∎∎∎∎  
+                ∎∎∎∎∎ Ivory Tower Studios presents...
             "
-            sleep 1
+            sleep 2
             puts "ATH 'vega' the workout app for ninjas."
             puts "\n(built on the open source 'wger' platform)"
             sleep 1
@@ -141,12 +164,11 @@ class CLI
             puts "Let's get started!"
     end
     def call
-        new_workout = create_workout
+        new_workout_session = create_workout
         start
-        create_categories
-        create_exercises
+        call_api
         prompt
-        build_workout_menu(new_workout)
-        binding.pry
+        build_workout_menu(new_workout_session)
+        # binding.pry
     end 
 end
