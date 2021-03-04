@@ -14,4 +14,6 @@ gem "pry", :groups => [:development, :test]
 gem "tty-prompt"
 gem "tty-progressbar"
 gem "tty-option"
-
+gem "tco"
+gem "rmagick"
+gem "catpix"

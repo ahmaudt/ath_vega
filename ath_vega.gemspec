@@ -38,6 +38,9 @@ Gem::Specification.new do |spec|
   spec.add_dependency "tty-option"
   spec.add_dependency "tty-progressbar"
   spec.add_dependency "tty-prompt"
+  spec.add_dependency "tco"
+  spec.add_dependency "rmagick"
+  spec.add_dependency "catpix"
 
   # Uncomment to register a new dependency of your gem
   # spec.add_dependency "example-gem", "~> 1.0"

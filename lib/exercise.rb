@@ -18,11 +18,5 @@ class Exercise # exercise belongs to a category
         index = user_input - 1
         selected_exercise = nil
         selected_exercise = self.all[index]
-        # self.all.select do |exr|
-        #     if exr.name  == selected_exercise
-        #         selected_exercise = exr
-        #     end
-        # end
-        # selected_exercise
     end
 end

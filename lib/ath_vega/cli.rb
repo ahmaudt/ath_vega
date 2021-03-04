@@ -66,78 +66,87 @@ class CLI
         Category.set_exercises
     end
 
-    def num_input 
-        gets.chomp.to_i
+    def get_category_objects
+        # Category.list_muscle_categories
+        Category.all
     end
 
-    def string_input
-        gets.strip.downcase
+    def get_exercise_objects
+        Exercise.all
     end
 
-    def list_categories
-        Category.list_muscle_categories
+    def list_categories # lists categories as hash w/ index for use in menu
+        categories = {}
+        get_category_objects.each.with_index { |cat, idx| categories[:"#{cat.muscle}"] = idx  }
+        categories
     end
 
-    def list_exercise_in_category(user_input)
-        Category.get_exercises_by_category(user_input)
-    end
-
-    def select_exercise(exercises, user_input)
-        # get index of object in array of exercise objects returned from last method
-        index = user_input - 1
-        selected_exercise = exercises[index]
-        print "\nYou selected: " + exercises[index].name
-        selected_exercise
+    def selected_category(user_category_selection)
+        get_category_objects[user_category_selection] #receives index location and returns object instance from array of instances in Category class
     end
 
     def prompt
         prompt = TTY::Prompt.new
     end
 
-    def build_workout(new_workout)
-        prompt
-        while new_workout.get_exercises.length < 3
-            # input = nil
-            # list muscle categories
-            puts "\n"
-            # list_categories
-            puts "Enter number of muscle group to see associated exercises"
-            # input  = num_input
-            input = prompt.select("Select muscle group to see exercises", list_categories, cycle:true)
-            Category.get_exr_by_cat(input)
-            binding.pry
-            # TODO: create menu that lists exercises associated with chosen category
-            # select muscle category to see exercises
-            exercises = Category.get_exercises_by_category(input)
-            if input != exercises.length - 1
-                begin
-                    raise CliError
-                rescue CliError => error
-                    puts error.message
-                else
-                    input = num_input
-                end
-            end
-            puts "\nenter number to add exercise to workout"
-            input = num_input
-            # return exercises based on input and add it to workout
-            chosen_exercise = select_exercise(exercises, input)
-            chosen_exercise.workout = new_workout # add selected exercise to workout
-        end
+    def category_menu
+        cat_obj = selected_category(prompt.select("Select muscle group to see exercises", list_categories, cycle:true)) # menu to select muscle category. It returns index value to get instance of category from Category class array
     end
 
+    def list_items(cat_obj) # takes instance of Category class as argument
+        exercises = {}
+        cat_obj.get_exercises.each.with_index { |exr, idx| exercises[:"#{exr.name}\n#{exr.description}"] = idx }
+        exercises
+    end
+
+    def selected_exercise(user_exrcise_selection)
+        get_exercise_objects[user_exrcise_selection] #receives index location and returns object instance from array of instances in Category class
+    end
+
+    def exercise_menu(cat_obj) # takes value of user_selection variable returned from category_menu method as argument
+        exr_obj = selected_exercise(prompt.select("Select an exercise to add to your workout", list_items(cat_obj), cycle:true))
+    end
+
+    def build_workout_menu(new_workout)
+        cat_obj = category_menu
+        exr_obj = exercise_menu(cat_obj)
+        puts "\nYou selected: " + "#{exr_obj.name}"
+        add_exr = prompt.yes?("Want to add this exercise to your workout?")
+        if add_exr == true
+            exr_obj.workout = new_workout
+        end
+        new_workout.get_exercises
+    end
+
+    def start
+            puts "
+                  ∎
+                 ∎∎∎
+                ∎∎∎∎∎
+                |   |
+                ∎∎∎∎∎ Ivory Tour 
+                ∎∎∎∎∎ Studios presents...
+            "
+            sleep 1
+            puts "ATH 'vega' the workout app for ninjas."
+            puts "\n(built on the open source 'wger' platform)"
+            sleep 1
+            Catpix::print_image "./lib/ninja-gaiden.png",
+            :limit_x => 0.15,
+            :limit_y => 0,
+            :center_x => false,
+            :center_y => false,
+            :bg => "white",
+            :bg_fill => false
+            puts "Let's get started!"
+    end
     def call
-        puts "Welcome to Ath, the workout app for ninjas! (built on the 'wger' platform)" # welcome user
-        # fetch API data and create workout object
         new_workout = create_workout
-        puts "\nOkay, let's build  your workout!"
-        # get api data and instantiate objects
+        start
         create_categories
         create_exercises
-        build_workout(new_workout)
-        puts "\nYour workout is set."
-        puts "\nLet's start training so we can get back out there and fight crime. Remember..."
-        puts "...evil never rests!"
-        # starts workout and shows first exercise
+        prompt
+        build_workout_menu(new_workout)
+        binding.pry
     end 
 end
