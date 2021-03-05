@@ -9,7 +9,7 @@ class CLI
     EXR_MAKE_WRKOUT = 'https://wger.de/api/v2/workout/?format=json'
 
     def get_last_workout_id
-        workout = `curl --silent -H "Authorization: Token 7f49dbc8baed11960d576e35b45fe34c060eaeab" -X GET https://wger.de/api/v2/workout/?format=json`
+        workout = `curl --silent -H "#{EXR_AUTH}" -X GET "#{EXR_WORKOUT}"`
         workout = JSON.parse(workout)
         if workout["results"].to_a.length == 0
             last_id = 258370
@@ -22,17 +22,17 @@ class CLI
         last_id = get_last_workout_id
         new_workout_id = last_id + 1
         new_workout = Workout.new(new_workout_id)
-        send_workout = `curl --silent -H "Authorization: Token 7f49dbc8baed11960d576e35b45fe34c060eaeab" -X POST --data "{ "id": #{new_workout.id}, "creation_date": #{new_workout.creation_date}, "comments": #{new_workout.comments} }" https://wger.de/api/v2/workout/?format=json`
+        send_workout = `curl --silent -H "#{EXR_AUTH}" -X POST --data "{ "id": #{new_workout.id}, "creation_date": #{new_workout.creation_date}, "comments": #{new_workout.comments} }" "#{EXR_WORKOUT}"`
         new_workout
     end
 
     def get_exercises
-        exr_list = `curl --silent -H "Authorization: Token 7f49dbc8baed11960d576e35b45fe34c060eaeab" -X GET "https://wger.de/api/v2/exercise/?limit=227&language=2"`
+        exr_list = `curl --silent -H "#{EXR_AUTH}" -X GET "#{EXR_PATH}"`
         exr_list = JSON.parse(exr_list)
     end
     
     def get_categories
-        exr_cat = `curl --silent -H "Authorization: Token 7f49dbc8baed11960d576e35b45fe34c060eaeab" -X GET "https://wger.de/api/v2/exercisecategory/?language=2&format=json"`
+        exr_cat = `curl --silent -H "#{EXR_AUTH}" -X GET "#{EXR_CAT_PATH}"`
         exr_cat = JSON.parse(exr_cat)
     end
 
@@ -72,12 +72,11 @@ class CLI
     end
 
     def get_category_objects
-        # Category.list_muscle_categories
         Category.all
     end
 
-    def get_exercise_objects
-        Exercise.all
+    def get_exercise_for_cat(cat_obj, index)
+        cat_obj.get_exercises[index]
     end
 
     def list_categories # lists categories as hash w/ index for use in menu
@@ -109,36 +108,12 @@ class CLI
     end
 
     def exercise_menu(cat_obj) # takes value of user_selection variable returned from category_menu method as argument
-        exr_obj = selected_exercise(prompt.select("Select an exercise to add to your workout", list_items(cat_obj), cycle:true))
-    end
-
-    def add_exr_prompt(exr_obj)
-        add_exr = prompt.yes?("Want to add #{exr_obj.name} exercise to your workout?")
-    end
-
-    def add_to_workout(exercise, workout_session)
-        add_exr = add_exr_prompt(exercise)
-        if add_exr == true
-            exercise.workout = workout_session 
-        end
-    end
-
-    def build_workout_menu(workout_session)
-        while workout_session.get_exercises.length < 3  
-            cat_obj = category_menu
-            puts "\n"
-            exr_obj = exercise_menu(cat_obj)
-            puts "\n"
-            add_to_workout(exr_obj, workout_session)
-        end
-        puts "\nHere's your workout!"
-        puts "\n"
-        show_workout(workout_session)
+        exr_obj = get_exercise_for_cat(cat_obj, prompt.select("Select an exercise to add to your workout", list_items(cat_obj), cycle:true))
     end
 
     def show_workout(workout_session)
-        table = TTY::Table.new(["Set/Reps", "Exercise 1","Exercise 2", "Exercise 3"], [[" ", "#{workout_session.get_exercises[0].name}", "#{workout_session.get_exercises[1].name}", "#{workout_session.get_exercises[2].name}"]])
-        puts table.render(:unicode)
+        table = TTY::Table.new([" ", "#{workout_session.get_exercises[2].name}","#{workout_session.get_exercises[1].name}", "#{workout_session.get_exercises[0].name}"], [["Set/Reps", "", "", ""]])
+        puts table.render :unicode
     end
 
     def start
@@ -163,12 +138,21 @@ class CLI
             :bg_fill => false
             puts "Let's get started!"
     end
+
     def call
         new_workout_session = create_workout
         start
         call_api
         prompt
-        build_workout_menu(new_workout_session)
+        while new_workout_session.get_exercises.length < 3
+            cat_obj = nil
+            exr_obj = nil
+            cat_obj = category_menu
+            exr_obj = exercise_menu(cat_obj)
+            exr_obj.workout = new_workout_session
+            # binding.pry
+        end
+        show_workout(new_workout_session)
         # binding.pry
     end 
 end
