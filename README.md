@@ -22,7 +22,13 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+This is a command line interface that uses the open source workout app, 'wger' (pronounced vega) to create workouts with three exercises. To use, firstly follow the directions above to install the gem. 
+
+To run the app:
+
+    $ bin/ath_vega
+
+You are then presented with a series of options for muscle groups (i.e. legs, back, etc.) to choose from. When you select a muscle, you will be presented with a list of exercises for that muscle group. Selecting an exercise adds it to the workout. Once you have selected three exercises, the terminal will output a table of your exercises.
 
 ## Development
 
