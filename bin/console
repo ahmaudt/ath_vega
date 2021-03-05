@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require_relative '../lib/environment.rb'
+require_relative '../config/environment.rb'
 
 # You can add fixtures and/or initialization code here to make experimenting
 # with your gem easier. You can also use a different console, if you like.
@@ -10,8 +10,10 @@ require_relative '../lib/environment.rb'
 # require "pry"
 # Pry.start
 
+puts "Welcome to the console. Command line interface methods are located in cli.rb, which can be found in the 'config' folder."
+
 def reload!
-    load_all './lib'
+    load_all '../lib'
 end
 
 require "irb"

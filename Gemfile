@@ -7,7 +7,7 @@ gemspec
 
 gem "rake", "~> 13.0"
 
-gem "rubocop", "~> 1.7"
+gem "rubocop", "~> 1.7", require: false
 gem "json"
 gem "require_all"
 gem "pry", :groups => [:development, :test]
