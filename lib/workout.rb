@@ -31,11 +31,7 @@ class Workout
         exr.workout = self
     end
 
-    def get_exercises
+    def session_exercises
         Exercise.all.select { |exr| exr.workout == self }
-    end
-
-    def exercises_names
-        exercises.map { |exr| exr.name }
     end
 end

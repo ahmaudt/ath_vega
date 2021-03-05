@@ -11,7 +11,6 @@ PATH
       require_all
       rmagick
       tco
-      tty-option
       tty-progressbar
       tty-prompt
       tty-table
@@ -82,7 +81,6 @@ GEM
     tco (0.1.8)
     tty-color (0.6.0)
     tty-cursor (0.7.1)
-    tty-option (0.1.0)
     tty-progressbar (0.18.1)
       strings-ansi (~> 0.2)
       tty-cursor (~> 0.7)
@@ -119,7 +117,6 @@ DEPENDENCIES
   rspec (~> 2.4)
   rubocop (~> 1.7)
   tco
-  tty-option
   tty-progressbar
   tty-prompt
   tty-table

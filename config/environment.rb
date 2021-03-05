@@ -19,5 +19,6 @@ require_relative '../lib/exercise'
 require_relative '../lib/category'
 require_relative '../lib/cli_error'
 require_relative '../lib/ath_vega/cli'
+
 # require_relative '../lib/ninja-gaiden.png'
 

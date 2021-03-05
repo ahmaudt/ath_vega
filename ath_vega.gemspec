@@ -35,7 +35,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency "json"
   spec.add_dependency "require_all"
   spec.add_dependency "pry"
-  spec.add_dependency "tty-option"
   spec.add_dependency "tty-progressbar"
   spec.add_dependency "tty-prompt"
   spec.add_dependency "tco"
