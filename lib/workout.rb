@@ -10,8 +10,6 @@ class Workout
         @creation_date = creation_date
         @@all << self
         @workout_hash = self.hash_workout
-        # @workout_hash["results"][:comments] << comments
-        # @workout_hash["results"][:creation_date] << creation_date
     end
 
     def hash_workout
@@ -21,10 +19,6 @@ class Workout
 
     def self.all
         @@all
-    end
-
-    def delete_current_workout
-        self.all.delete_at(-1)
     end
 
     def add_selected_to_current_workout(exr)
