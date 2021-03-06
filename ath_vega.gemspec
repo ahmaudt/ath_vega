@@ -5,9 +5,9 @@ require_relative "lib/ath_vega/version"
 Gem::Specification.new do |spec|
   spec.name          = "ath_vega"
   spec.version       = AthVega::VERSION
+  spec.executables   << 'ath-vega'
   spec.authors       = ["Ahmaud R. Templeton"]
   spec.email         = ["ahmaud@gmail.com"]
-
   spec.summary       = "workout planner."
   spec.description   = "Ath helps you plan your workout using exercises from the open source app, 'wger'."
   spec.homepage      = "https://github.com/ahmaudt/ath_vega"
