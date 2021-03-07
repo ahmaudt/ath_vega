@@ -1,20 +1,20 @@
 PATH
   remote: .
   specs:
-    ath_vega (0.2.0)
-      awesome_print
-      catpix
-      json
-      net-http
-      nokogiri
-      pry
-      require_all
-      rmagick
-      tco
-      tty-progressbar
-      tty-prompt
-      tty-table
-      uri
+    ath_vega (0.1.13)
+      awesome_print (~> 1.8.0)
+      catpix (~> 0.2.0)
+      json (~> 2.5.1)
+      net-http (~> 0.1.1)
+      nokogiri (~> 1.11.1)
+      pry (~> 0.14.0)
+      require_all (~> 3.0.0)
+      rmagick (~> 2.16.0)
+      tco (~> 0.1.8)
+      tty-progressbar (~> 0.18.1)
+      tty-prompt (~> 0.23.0)
+      tty-table (~> 0.12.0)
+      uri (~> 0.10.1)
 
 GEM
   remote: https://rubygems.org/
@@ -94,8 +94,6 @@ GEM
       tty-screen (~> 0.8)
       wisper (~> 2.0)
     tty-screen (0.8.1)
-    tty-spinner (0.9.3)
-      tty-cursor (~> 0.7)
     tty-table (0.12.0)
       pastel (~> 0.8)
       strings (~> 0.2.0)
@@ -119,10 +117,8 @@ DEPENDENCIES
   rspec (~> 2.4)
   rubocop (~> 1.7)
   tco
-  tty-color
   tty-progressbar
   tty-prompt
-  tty-spinner
   tty-table
 
 BUNDLED WITH

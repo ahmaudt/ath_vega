@@ -17,7 +17,7 @@ require_relative '../lib/vega_api'
 require_relative '../lib/workout'
 require_relative '../lib/exercise'
 require_relative '../lib/category'
-require_relative '../lib/cli_error'
+require_relative '../lib/api_error'
 require_relative '../lib/ath_vega/cli'
 
 # require_relative '../lib/ninja-gaiden.png'
