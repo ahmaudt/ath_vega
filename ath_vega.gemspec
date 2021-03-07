@@ -5,7 +5,7 @@ require_relative "lib/ath_vega/version"
 Gem::Specification.new do |spec|
   spec.name          = "ath_vega"
   spec.version       = AthVega::VERSION
-  spec.executables   << 'ath-vega'
+  spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.authors       = ["Ahmaud R. Templeton"]
   spec.email         = ["ahmaud@gmail.com"]
   spec.summary       = "workout planner."
@@ -24,7 +24,7 @@ Gem::Specification.new do |spec|
   spec.files = Dir.chdir(File.expand_path(__dir__)) do
     `git ls-files -z`.split("\x0").reject { |f| f.match(%r{\A(?:test|spec|features)/}) }
   end
-  spec.bindir        = "exe"
+  spec.bindir        = "bin"
   spec.executables   = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
   spec.add_development_dependency "rspec", "~> 2.4"
