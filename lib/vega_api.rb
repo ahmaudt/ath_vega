@@ -4,11 +4,7 @@ class API
     EXR_AUTH = "Authorization: Token 7f49dbc8baed11960d576e35b45fe34c060eaeab"
     EXR_WORKOUT = 'https://wger.de/api/v2/workout/?format=json'
     EXR_MAKE_WRKOUT = 'https://wger.de/api/v2/workout/?format=json'
-
-    def initialize
-        
-    end
-
+    
     def get_exercises
         exr_list = `curl --silent -H "#{EXR_AUTH}" -X GET "#{EXR_PATH}"`
         exr_list = JSON.parse(exr_list)
