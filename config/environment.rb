@@ -1,6 +1,5 @@
 require 'bundler/setup'
 Bundler.require(:default, :development) 
-
 require "ath_vega"
 require "require_all"
 require 'net/http'
@@ -20,6 +19,5 @@ require_all 'lib'
 # require_relative '../lib/category'
 # require_relative '../lib/api_error'
 # require_relative '../lib/ath_vega/cli'
-
 # require_relative '../lib/ninja-gaiden.png'
 
