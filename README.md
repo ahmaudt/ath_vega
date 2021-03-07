@@ -26,9 +26,9 @@ This is a command line interface that uses the open source workout app, 'wger' (
 
 To run the app:
 
-    $ bin/ath_vega
+    $ ath-vega
 
-You are then presented with a series of options for muscle groups (i.e. legs, back, etc.) to choose from. When you select a muscle, you will be presented with a list of exercises for that muscle group. Selecting an exercise adds it to the workout. Once you have selected three exercises, the terminal will output a table of your exercises.
+You are then presented with a series of options for muscle groups (i.e. legs, back, etc.) to choose from. When you select a muscle, you will be presented with a list of exercises for that muscle group. Selecting an exercise adds it to the workout. Once you have selected three exercises, a table of your selected exercises will output to the terminal.
 
 ## Development
 
