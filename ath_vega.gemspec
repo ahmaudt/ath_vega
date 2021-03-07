@@ -39,6 +39,8 @@ Gem::Specification.new do |spec|
   spec.add_dependency "rmagick", "~> 2.16.0"
   spec.add_dependency "catpix", "~> 0.2.0"
   spec.add_dependency "tty-table", "~> 0.12.0"
+  spec.add_dependency "tty-font", "0.5.0"
+  spec.add_dependency "pastel", "0.8.0"
 
   # Uncomment to register a new dependency of your gem
   # spec.add_dependency "example-gem", "~> 1.0"

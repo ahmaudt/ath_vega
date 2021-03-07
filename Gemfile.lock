@@ -7,10 +7,12 @@ PATH
       json (~> 2.5.1)
       net-http (~> 0.1.1)
       nokogiri (~> 1.11.1)
+      pastel (= 0.8.0)
       pry (~> 0.14.0)
       require_all (~> 3.0.0)
       rmagick (~> 2.16.0)
       tco (~> 0.1.8)
+      tty-font (= 0.5.0)
       tty-progressbar (~> 0.18.1)
       tty-prompt (~> 0.23.0)
       tty-table (~> 0.12.0)
@@ -81,6 +83,7 @@ GEM
     tco (0.1.8)
     tty-color (0.6.0)
     tty-cursor (0.7.1)
+    tty-font (0.5.0)
     tty-progressbar (0.18.1)
       strings-ansi (~> 0.2)
       tty-cursor (~> 0.7)
@@ -110,6 +113,7 @@ DEPENDENCIES
   ath_vega!
   catpix
   json
+  pastel
   pry
   rake (~> 13.0)
   require_all
@@ -117,6 +121,7 @@ DEPENDENCIES
   rspec (~> 2.4)
   rubocop (~> 1.7)
   tco
+  tty-font
   tty-progressbar
   tty-prompt
   tty-table
