@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/ahmaudt/ath_vega"
   spec.license       = "MIT"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.4.0")
-  spec.files = Dir["{bin,lib,config}/**/*", "README.md", "LICENSE.txt" ]
+  spec.files = Dir["{bin,config,lib,pkg,spec}/**/*", "README.md", "LICENSE.txt" ]
   spec.require_paths = ["lib"]
   spec.metadata["allowed_push_host"] = 'http://rubygems.org'
 
