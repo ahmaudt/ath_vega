@@ -14,7 +14,6 @@ Gem::Specification.new do |spec|
   spec.license       = "MIT"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.4.0")
   spec.files = Dir["{bin,lib}/**/*", "README.md", "LICENSE.txt" ]
-  spec.bindir        = "bin"
   spec.require_paths = ["lib"]
   spec.metadata["allowed_push_host"] = 'http://rubygems.org'
 
