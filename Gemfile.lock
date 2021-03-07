@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ath_vega (0.1.14)
+    ath_vega (0.1.15)
       awesome_print (~> 1.8.0)
       catpix (~> 0.2.0)
       json (~> 2.5.1)
