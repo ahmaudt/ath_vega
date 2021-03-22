@@ -3,7 +3,7 @@ class Category
 
     @@all_categories = []
     def initialize
-        @muscle = muscle
+        @muscle
         @@all_categories << self
     end
 
