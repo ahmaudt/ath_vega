@@ -95,8 +95,6 @@ class CLI
         new_workout_session = vega_api.create_workout
         create_objects(vega_api)
         prompt
-        # abs_menu
-        # binding.pry
         while new_workout_session.session_exercises.length < 4
             cat_obj = nil
             exr_obj = nil
@@ -109,7 +107,6 @@ class CLI
         ab_exr = abs_menu
         ab_exr.workout = new_workout_session
         new_workout_session.set_exercise_array
-        # binding.pry
         show_workout(new_workout_session)
     end 
 end
