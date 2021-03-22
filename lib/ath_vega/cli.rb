@@ -94,6 +94,7 @@ class CLI
         vega_api = api_call
         new_workout_session = vega_api.create_workout
         create_objects(vega_api)
+        binding.pry
         prompt
         while new_workout_session.session_exercises.length < 4
             cat_obj = nil

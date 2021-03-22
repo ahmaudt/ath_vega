@@ -4,10 +4,15 @@ class Exercise # exercise belongs to a category
     @@all_exercises = []
 
     def initialize
-        @name = name
-        @muscle = muscle # each instance of exercise will set its muscle equal to instance of muscle category
-        @description = description
+        @name
+        @muscle
+        @description
         @@all_exercises << self
+    end
+
+    def self.get_all_muscles_ofX(muscle_cat)
+        collected_muscles = []
+        @@all_exercises.select { |exr| exr.muscle == muscle_cat }
     end
 
     def self.all
